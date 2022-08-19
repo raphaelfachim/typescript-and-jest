@@ -5,7 +5,10 @@ export function parse(colaborador: any): Colaborador {
     colaborador.nome,
     colaborador.sobrenome,
     colaborador.cpf,
-    null
+    null,
+    undefined,
+    undefined,
+    colaborador.idPonto
   );
 }
 
