@@ -1,15 +1,13 @@
-import Colaborador from "./Colaborador";
-
 export default class RegistroPonto {
   constructor(
-    private dataEntrada: Date,
-    private dataSaida: Date,
-    private colaborador: Colaborador
+    public dataEntrada: Date,
+    public dataSaida: Date,
+    public idColaborador: number
   ) { 
     this.valida(dataEntrada);
   }
 
-  private valida(dataEntrada) {
+  private valida(dataEntrada: Date) {
     if(!dataEntrada) throw new Error("Não é possivel criar um registro sem data de entrada");
   }
 }

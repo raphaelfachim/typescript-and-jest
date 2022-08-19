@@ -1,5 +1,5 @@
-import Colaborador from "../../../../src/core/entity/company/Colaborador";
-import ColaboradorRepository from "../../../../src/data/dataAccess/mock/colaborador/ColaboradorRepository";
+import Colaborador from "../../../../../src/core/entity/company/Colaborador";
+import ColaboradorRepository from "../../../../../src/data/dataAccess/mock/colaborador/ColaboradorRepository";
 
 describe("Deve recuperar objetos da classe 'Colaborador' a partir de um vetor mockado", () => {
   const colaboradorRepository = new ColaboradorRepository();
