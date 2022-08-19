@@ -7,8 +7,8 @@ const apiConfig = {
   headers: headers
 }
 
-function addTwo(num){
-  return num + 2;
+function uriUsuarioDetalhado(id) {
+  return `https://api.pontomais.com.br/external_api/v1/employees/${id}?attributes=id,first_name,last_name,email,is_clt,cpf,time_card_source,has_time_cards,work_hours,cost_center,user`;
 }
 
-export { apiConfig }
+export { apiConfig, uriUsuarioDetalhado }
