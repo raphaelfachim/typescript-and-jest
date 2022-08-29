@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Colaborador } from "./Colaborador.entity";
 

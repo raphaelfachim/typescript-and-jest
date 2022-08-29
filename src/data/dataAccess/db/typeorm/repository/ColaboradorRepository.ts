@@ -32,13 +32,17 @@ export default class ColaboradorRepository implements IColaboradorRepository {
   }
 
   async buscarColaboradores(): Promise<Colaborador[]> {
-    this.initRepo();
+    await this.initRepo();
 
     try {
-      const entities = await this.repo.find();
+      const entities = await this.repo.find({
+        relations: {
+          registrosPonto: true
+        }
+      });
       return parseListToCoreEntity(entities);
     } catch (err) { 
-
+      console.log(err);
     }
   }
 

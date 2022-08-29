@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import Colaborador from "../../../../../core/entity/company/Colaborador";
 import RegistroPonto from "../../../../../core/entity/company/RegistroPonto";
 import { RegistroPonto as RegistroPontoEntity } from "../entity/RegistroPonto.entity";

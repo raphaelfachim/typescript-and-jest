@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import ColaboradorRepository from "../../../../../../src/data/dataAccess/db/typeorm/repository/ColaboradorRepository"
 
 describe("Manipulação das entidades do tipo Colaborador no banco de dados utilizando o framework TypeORM", () => {
@@ -6,6 +7,6 @@ describe("Manipulação das entidades do tipo Colaborador no banco de dados util
   it("Deve buscar todos os colaboradores", async () => {
     const colaboradores = await colaboradorRepo.buscarColaboradores();
 
-    expect(colaboradores.length).toBe(4);
+    expect(colaboradores.length).toBe(2);
   })
 })

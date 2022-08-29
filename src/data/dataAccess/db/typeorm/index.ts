@@ -89,7 +89,7 @@ initTransactions().then( async () => {
     /**
      * Inserindo um Colaborador com Registros de Ponto em cascata
      */
-    // colaborador2.registrosPonto.push(registroPonto1, registroPonto2, registroPonto3);
+    colaborador2.registrosPonto.push(registroPonto1, registroPonto2, registroPonto3);
 
     // const novoColaborador = await colRepo.save(parse(colaborador2));
     // console.log(novoColaborador);

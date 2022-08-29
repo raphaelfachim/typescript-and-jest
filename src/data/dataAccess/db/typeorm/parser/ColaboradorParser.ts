@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { Colaborador as ColaboradorEntity } from "../entity/Colaborador.entity";
 import Colaborador from "../../../../../core/entity/company/Colaborador";
 import { parseListToDBEntity as registroParseListToDBEntity, parseListToCoreEntity as registroParseListToCoreEntity} from "./RegistroPontoParser"

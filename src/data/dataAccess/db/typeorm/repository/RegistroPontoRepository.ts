@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { Repository } from "typeorm";
 import Colaborador from "../../../../../core/entity/company/Colaborador";
 import RegistroPonto from "../../../../../core/entity/company/RegistroPonto";
