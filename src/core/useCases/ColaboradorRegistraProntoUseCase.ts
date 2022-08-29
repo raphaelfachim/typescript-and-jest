@@ -12,7 +12,7 @@ export default class ColabroadorRegistraPontoUseCase {
     if(registroPonto) { 
       colaborador.registrosPonto.push(registroPonto);
     } else if(registrosPontos){
-      const idsRegistros = registrosPontos.map((registro) => registro.idColaborador).reduce((a,b) => a + b, 0) / 
+      const idsRegistros = registrosPontos.map((registro) => registro.colaborador.idPonto).reduce((a,b) => a + b, 0) / 
                             registrosPontos.length;
       if(idsRegistros != colaborador.idPonto) throw new Error(`O id dos registros não correspondem ao id do Colaborador [${idsRegistros} - ${colaborador.idPonto}]`);
       colaborador.registrosPonto.push.apply(colaborador.registrosPonto, registrosPontos);

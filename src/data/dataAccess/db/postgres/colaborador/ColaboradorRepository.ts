@@ -13,7 +13,7 @@ export default class ColaboradorRepository implements IColaboradorRepository{
 
   async buscarColaboradorPorNome(nome: string): Promise<Colaborador> {
     
-    const sql = `SELECT * FROM COLABORADOR c WHERE c."nomeCompleto" like '${nome}%'`;
+    const sql = `SELECT * FROM COLABORADOR c WHERE c."nome" like '${nome}%'`;
 
     const colaboradorBD = await this.rodaQuery(sql);
 
@@ -52,8 +52,8 @@ export default class ColaboradorRepository implements IColaboradorRepository{
 
   criaColaborador(colaboradorEntity: any): Colaborador{
     return new Colaborador(
-      colaboradorEntity.nomeCompleto.split(" ")[0],
-      colaboradorEntity.nomeCompleto.split(" ").splice(1).join(" ").trim(),
+      colaboradorEntity.nome.split(" ")[0],
+      colaboradorEntity.nome.split(" ").splice(1).join(" ").trim(),
       colaboradorEntity.cpf,
       undefined
     );

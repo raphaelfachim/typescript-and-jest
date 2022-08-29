@@ -2,6 +2,7 @@ import RegistroPonto from "../../../../core/entity/company/RegistroPonto";
 import IRegistroDePontoRepository from "../../../repository/registroDePonto/IRegistroDePontoReposiory";
 import { parseList } from "../parser/RegistroDePontoMockParser";
 import { registrosPontos as mock } from "../MockRegistrosPontos";
+import Colaborador from "../../../../core/entity/company/Colaborador";
 export default class RegistroDePontoRepository implements IRegistroDePontoRepository{
 
   private registrosDePonto: RegistroPonto[];
@@ -10,21 +11,21 @@ export default class RegistroDePontoRepository implements IRegistroDePontoReposi
     this.registrosDePonto = parseList(mock);
   }
 
-  buscarPontosPorUsuario(idColaborador: number): Promise<RegistroPonto[]> {
+  buscarPontosPorColaborador(colaborador: Colaborador): Promise<RegistroPonto[]> {
     return Promise.resolve(
       this.registrosDePonto.filter((registroDePonto) => {
-        return registroDePonto.idColaborador === idColaborador;
+        return registroDePonto.colaborador.email === colaborador.email;
       })
     );
   }
 
-  buscarPontosPorUsuarioEPeriodo(idColaborador: number, dataIni: Date, dataFim?: Date): Promise<RegistroPonto[]> {
+  buscarPontosPorColaboradorEPeriodo(colaborador: Colaborador, dataIni: Date, dataFim?: Date): Promise<RegistroPonto[]> {
     return Promise.resolve(
       this.registrosDePonto.filter((registroDePonto) => {
         if(dataFim) {
-          return registroDePonto.idColaborador === idColaborador && registroDePonto.dataEntrada > dataIni && registroDePonto.dataEntrada < dataFim;
+          return registroDePonto.colaborador.email === colaborador.email && registroDePonto.dataEntrada > dataIni && registroDePonto.dataEntrada < dataFim;
         } else {
-          return registroDePonto.idColaborador === idColaborador && registroDePonto.dataEntrada > dataIni;
+          return registroDePonto.colaborador.email === colaborador.email && registroDePonto.dataEntrada > dataIni;
         }
       })
     );

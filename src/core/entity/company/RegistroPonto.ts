@@ -1,8 +1,10 @@
+import Colaborador from "./Colaborador";
+
 export default class RegistroPonto {
   constructor(
     public dataEntrada: Date,
     public dataSaida: Date,
-    public idColaborador: number
+    public colaborador: Colaborador
   ) { 
     this.valida(dataEntrada);
   }

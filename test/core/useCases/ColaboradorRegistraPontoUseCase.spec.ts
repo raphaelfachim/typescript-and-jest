@@ -11,7 +11,7 @@ describe("Testes das entidades Colaborador e RegistroPonto", () => {
 
   it("Deve adicionar um ponto à lista de pontos de um colaborador", async () => {
     const colaborador: Colaborador = await colaboradorRepository.buscarColaboradorPorNome("Raphael");
-    const registroDePontos: RegistroPonto[] = await registrosPontosRepository.buscarPontosPorUsuario(1);
+    const registroDePontos: RegistroPonto[] = await registrosPontosRepository.buscarPontosPorColaborador(colaborador);
 
     const useCase = new ColabroadorRegistraPontoUseCase();
 

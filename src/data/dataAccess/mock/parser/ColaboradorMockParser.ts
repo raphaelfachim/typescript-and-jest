@@ -5,7 +5,7 @@ export function parse(colaborador: any): Colaborador {
     colaborador.nome,
     colaborador.sobrenome,
     colaborador.cpf,
-    null,
+    colaborador.email,
     undefined,
     undefined,
     colaborador.idPonto
