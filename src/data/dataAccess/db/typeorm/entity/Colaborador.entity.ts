@@ -1,5 +1,6 @@
 import "reflect-metadata"
-import { Entity, PrimaryGeneratedColumn, Column} from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm"
+import { RegistroPonto } from "./RegistroPonto.entity";
 
 @Entity()
 export class Colaborador {
@@ -32,6 +33,11 @@ export class Colaborador {
 
   @Column()
   ehAtivo: boolean;
+
+  @OneToMany(() => RegistroPonto, (registroPonto) => registroPonto.colaborador, {
+    cascade: true
+  })
+  registrosPonto: RegistroPonto[];
 
   constructor( ) { }
 

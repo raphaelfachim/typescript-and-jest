@@ -3,31 +3,48 @@ import { Colaborador as ColaboradorEntity } from "../entity/Colaborador.entity";
 import { Repository } from "typeorm"
 import Colaborador from "../../../../../core/entity/company/Colaborador";
 import IColaboradorRepository from "../../../../repository/colaborador/IColaboradorRepository";
+import { AppDataSource } from "../OrmConfig";
+import { parseToCoreEntity, parseToDBEntity, parseListToCoreEntity } from "../parser/ColaboradorParser"
 
-export default class ColaboradorRepository extends Repository<ColaboradorEntity> implements IColaboradorRepository {
+export default class ColaboradorRepository implements IColaboradorRepository {
 
-  buscarColaboradorPorNome(nome: string): Promise<Colaborador> {
-    throw new Error("Method not implemented.");
+  private ds = AppDataSource;
+  private repo: Repository<ColaboradorEntity>;
+
+  async initRepo(){
+    if (!this.ds.isInitialized) {
+      await this.ds.initialize();
+      this.repo = this.ds.getRepository(ColaboradorEntity);
+    }
   }
-  buscarColaboradores(): Promise<Colaborador[]> {
-    throw new Error("Method not implemented.");
+
+  async buscarColaboradorPorNome(nome: string): Promise<Colaborador> {
+    this.initRepo();
+    try{
+      const entity = await this.repo.createQueryBuilder("colaborador")
+                .where(`colaborador.nome like '${nome}`)
+                .getOneOrFail();
+      return parseToCoreEntity(entity);
+    } catch (err) {
+      throw new Error("Colaborador não encontrado!");
+    }
+    
+  }
+
+  async buscarColaboradores(): Promise<Colaborador[]> {
+    this.initRepo();
+
+    try {
+      const entities = await this.repo.find();
+      return parseListToCoreEntity(entities);
+    } catch (err) { 
+
+    }
   }
 
   salvarColaborador(colaborador: Colaborador): void {
-    
-    let entity = new ColaboradorEntity();
-    entity.nome = colaborador.nome + " " + colaborador.sobrenome;
-    entity.cpf = colaborador.cpf;
-    entity.ehAtivo = colaborador.ativo;
-    entity.ehClt = colaborador.ehClt;
-    entity.email = colaborador.email;
-    entity.idPonto = colaborador.idPonto;
-    entity.usuario = colaborador.email.split('@')[0];
-
-
-    console.log('Registrando colaborador  ' + entity.nome);
-    
-    this.save( entity );
+    this.initRepo();
+    this.repo.save(parseToDBEntity(colaborador))
   }
   
 }

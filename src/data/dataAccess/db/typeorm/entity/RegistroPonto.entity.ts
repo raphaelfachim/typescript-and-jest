@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Colaborador } from "./Colaborador.entity";
 
 @Entity()
@@ -7,7 +7,7 @@ export class RegistroPonto {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @ManyToOne(() => Colaborador, (colaborador) => colaborador.registrosPonto)
   colaborador: Colaborador;
 
   @Column()
@@ -19,8 +19,9 @@ export class RegistroPonto {
   dataSaida: Date;
 
   @Column()
-  diff(): number {
-    if (this.dataSaida) return (this.dataSaida.getTime() - this.dataEntrada.getTime());
-    return 0;
+  diff: number;
+
+  constructor() {
+    this.diff = this.dataSaida ? this.dataSaida.getTime() - this.dataEntrada.getTime() : 0;
   }
 }
